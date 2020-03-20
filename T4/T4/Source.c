@@ -15,7 +15,7 @@ int main()
 	printf("Valoarea pointerului dupa incrementare: %d\n", *p);
 	(*p)--;
 	printf("Valoarea pointerului dupa decrementare: %d\n\n", *p);
-
+	
 
 	printf("Avem vectorul V="); for (i = 0; i < 5; i++)printf("%d ", V[i]);
 	printf("\nPointerul 'p' ia adresa de inceput a acestui vector (V[0])\n");
