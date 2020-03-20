@@ -1,2 +1,2 @@
 # TP
-Tema lab 3.
+Tema lab 3 - 4.
