@@ -1,11 +1,10 @@
-
-//Problema nu e rezolvata, aici e ce am incercat 
 #include<stdio.h>
 #include<stdlib.h>
 
 #define CAP 50
 
-int n = -1,stack[CAP],m = -1, stack2[CAP];
+int n = -1,stack[CAP],m = -1, stack2[CAP]; //Stiva 1 si stiva 2
+//Prototipuri
 void push(int);
 void pop(void);
 int peek(void);
@@ -18,47 +17,58 @@ void pop2(void);
 int peek2(void);
 int ePlina2(void);
 int eVida2(void);
-int pwr(int);
+int pow10(int);
 
 
 int main()
 {
-	int i, ch, elem, a,nr;
-	/*nr = 0;
-	for (i = 1; i <= 50; i++)
+	int i, ch, elem, a, nr;
+	nr = 0;
+	for (i = 1; i <= 50; i++) //Introduc elemente pana la 50
 	{
 		push(i);
 	}
-	
-	while (!eVida()) 
+
+	while (!eVida()) //Afisez si sterg
 	{
 		printf("%d\n", peek());
 		pop();
 	}
-	for (i = 1; i <= 50; i++) {
+	printf("\n");
 
-		a = peek();
-		if (!ePrim(a))
+
+
+	for (i = 1; i <= 50; i++) //Elimin elementele prime din prima stiva si le introduc sub forma binara in ce de-a doua
+	{
+		if (!ePrim(i))
+			push(i);
+		else
 		{
+			a = transf(i);
 			push2(a);
 		}
-		pop();
-
 	}
-	while (!eVida2())
+
+	while (!eVida()) //Afisez prima stiva fara elemente prime
+	{
+		printf("%d\n", peek());
+		pop();
+	}
+
+	printf("\n");
+
+	while (!eVida2()) //Afisez cea de-a doua stiva 
 	{
 		printf("%d\n", peek2());
 		pop2();
-		nr++;
-	}*/
-	printf("%d", transf(20));
+	}
 
-
+	
 	system("pause");
 	return 0;
 }
 
-void push(int elem)
+void push(int elem)// Introduce elemente in prima stiva
 {
 	if (!ePlina())
 	{
@@ -71,7 +81,7 @@ void push(int elem)
 	}
 }
 
-void pop()
+void pop() //Sterge varful din prima stiva
 {
 	if (!eVida())
 	{
@@ -83,7 +93,7 @@ void pop()
 	}
 }
 
-int peek()
+int peek() //Afiseaza varful din prima stiva
 {
 	if(!eVida())
 	{
@@ -110,7 +120,7 @@ int eVida()
 	else return 0;
 }
 
-int ePrim(int x)
+int ePrim(int x) //Verifica daca un numar este prim
 {
 	int i;
 	if (x == 1)return 0;
@@ -121,8 +131,13 @@ int ePrim(int x)
 	}
 	return 1;
 }
-///////////////////
-void push2(int elem)
+
+
+
+
+
+
+void push2(int elem)//Introduce elemente in cea de-a doua stiva
 {
 	if (!ePlina2())
 	{
@@ -135,7 +150,7 @@ void push2(int elem)
 	}
 }
 
-void pop2()
+void pop2()//Sterge varful din cea de-a doua stiva
 {
 	if (!eVida2())
 	{
@@ -147,7 +162,7 @@ void pop2()
 	}
 }
 
-int peek2()
+int peek2()//Afiseaza varful din cea de-a doua stiva
 {
 	if (!eVida2())
 	{
@@ -174,29 +189,31 @@ int eVida2()
 	else return 0;
 }
 
-int transf(int a)
+int transf(int a)//Transforma un numar in forma binara 
 {
 	int m,r,nr;
 	nr = 0;
 	m = 0;
 	while (a > 0)
 	{
-
-		r = a % 2;
-		if (r == 1)nr++;
+		
+		m = a % 2 * pow10(nr) + m;
 		a = a / 2;
-		m = r*pwr(nr) + m;
+		nr++;
 	}
 	return m;
 }
 
-int pwr(int i)
+int pow10(int j) //Returneaza puteri ale lui 10 in functie de j ( 10^j )
 {
-	int j,a;
-	a = 1;
-	for (j = 1; j <= i; j++)
-		a = a * 10;
-	return a;
+	if (j == 0)return 1;
+	int i = 1;
+	while (j > 0)
+	{
+		i = i * 10;
+		j--;
+	}
+	return i;
 }
 
 
